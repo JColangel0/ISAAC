@@ -1,0 +1,90 @@
+[node:root$
+response:_$
+words:root$
+priority:-1$
+connections:what, exit, edit, open, read, search$]
+
+[node:exit$
+words:goodbye quit exit$
+response:Exit Code 0$
+priority:0$
+connections:_$]
+
+[node:what$
+response:_$
+words:what$
+priority:0$
+connections:time, date$]
+
+[node:search$
+response:_$
+words:search$
+priority:0$
+connections:specfic$]
+
+[node:open$
+response:_$
+words:open$
+priority:0$
+connections:planner, spec_database$]
+
+[node:read$
+response:_$
+words:read$
+priority:0$
+connections:_$]
+
+[node:edit$
+words:edit change modify update$
+response:_$
+priority:0$
+connections:presets$]
+
+[node:planner$
+response:open_app{"Applications/Planner/Planner"}$
+words:planner$
+priority:1$
+connections:_$]
+
+[node:specfic$
+response:spec_fic_search{}$
+words:speculative$
+priority:1$
+connections:_$]
+
+
+[node:spec_database$
+response:open_app{"Applications/Database"}$
+words:speculative$
+priority:1$
+connections:_$]
+
+[node:time$
+response:get_time{%H:%M}$
+words:time$
+priority:1$
+connections:_$]
+
+[node:date$
+response:get_date{0}$
+words:date$
+priority:1$
+connections:date_tomorrow, date_yesterday$]
+
+[node:date_tomorrow$
+response:get_date{1}$
+words:tomorrow$
+priority:2$
+connections:_$]
+
+[node:date_yesterday$
+response:get_date{-1}$
+words:yesterday$
+priority:2$
+connections:_$]
+
+[node:presets$
+words:presets settings$
+response:change_presets{}$
+priority:1$
+connections:_$]

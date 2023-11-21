@@ -1,0 +1,4 @@
+title:boss$
+speed:1.0$
+delay:15.0$
+limit:65$

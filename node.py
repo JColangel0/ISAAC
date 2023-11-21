@@ -1,6 +1,7 @@
 import datetime
 import voice
 import os
+import wikipedia
 from Dependencies import specfic_search
 
 dt = datetime.datetime.now()
@@ -30,7 +31,7 @@ def open_app(partial_address):
     voice.speak("Opening it now " + voice.title)
     address = os.getenv("DESK_PATH") + partial_address
     os.system(address)
-    return "Work completed"
+    return "App closed"
 
 
 def spec_fic_search():
@@ -45,6 +46,17 @@ def get_time(format):
 def get_date(delta):
     delta = int(delta)
     return (dt + td(delta)).strftime("%m-%d-%Y")
+
+
+def search_mode():
+    while True:
+        voice.speak("What would you like to search for?")
+        voice.speak(wikipedia.summary(voice.takeCommand(), sentences=3))
+        voice.speak("Would you like to continue searching" + voice.title + "?")
+        response = voice.takeCommand()
+        if "no" in response or "exit" in response:
+            break
+    return "Finished search"
 
 
 class Node:

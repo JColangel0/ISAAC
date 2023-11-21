@@ -17,7 +17,7 @@ priority:0$
 connections:time, date$]
 
 [node:search$
-response:_$
+response:search_mode{}$
 words:search$
 priority:0$
 connections:specfic$]

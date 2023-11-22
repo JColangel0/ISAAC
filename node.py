@@ -52,7 +52,7 @@ def search_mode():
     while True:
         voice.speak("What would you like to search for?")
         voice.speak(wikipedia.summary(voice.takeCommand(), sentences=3))
-        voice.speak("Would you like to continue searching" + voice.title + "?")
+        voice.speak("Would you like to continue searching " + voice.title + "?")
         response = voice.takeCommand()
         if "no" in response or "exit" in response:
             break

@@ -2,7 +2,8 @@ import datetime
 import voice
 import os
 import wikipedia
-from Dependencies import specfic_search
+import string
+from Dependencies import search
 
 dt = datetime.datetime.now()
 td = datetime.timedelta
@@ -36,7 +37,7 @@ def open_app(partial_address):
 
 def spec_fic_search():
     voice.speak("What would you like to search for " + voice.title)
-    return specfic_search.search(voice.takeCommand())
+    return search.search(voice.takeCommand())
 
 
 def get_time(format):
@@ -57,6 +58,39 @@ def search_mode():
         if "no" in response or "exit" in response:
             break
     return "Finished search"
+
+
+def change_directory():
+    voice.speak("Which directory would you like to enter?")
+    address = voice.takeCommand()
+    address = string.capwords(address)
+    address = address.replace(" / ", "/")
+    address = address.replace(" Slash ", "/")
+    path = os.getenv("DESK_PATH") + address
+    try:
+        os.chdir(path)
+        return "Successfully navigated to directory"
+    except:
+        return "No such directory can be located"
+
+
+def open_file():
+    voice.speak("What is the file name " + voice.title + "?")
+    file = voice.takeCommand()
+    file = file.replace(" ", ".")
+    try:
+        os.system("open " + file)
+        return "Opened " + file
+    except:
+        return "No such file found"
+
+
+def get_news():
+    return search.getNews()
+
+
+def get_weather():
+    return search.getWeather()
 
 
 class Node:

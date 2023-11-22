@@ -2,11 +2,30 @@
 response:_$
 words:root$
 priority:-1$
-connections:what, exit, edit, open, read, search$]
+connections:what, exit, edit, open, read, search, navigate, news, weather$]
+
+[node:news$
+words:news events$
+response:get_news{}$
+priority:0$
+connections:_$]
+
+[node:weather$
+words:weather$
+response:get_weather{}$
+priority:0$
+connections:_$]
 
 [node:exit$
 words:goodbye quit exit$
 response:Exit Code 0$
+priority:0$
+connections:_$]
+
+
+[node:navigate$
+words:navigate$
+response:change_directory{}$
 priority:0$
 connections:_$]
 
@@ -26,7 +45,7 @@ connections:specfic$]
 response:_$
 words:open$
 priority:0$
-connections:planner, spec_database$]
+connections:planner, spec_database, file$]
 
 [node:read$
 response:_$
@@ -43,6 +62,12 @@ connections:presets$]
 [node:planner$
 response:open_app{"Applications/Planner/Planner"}$
 words:planner$
+priority:1$
+connections:_$]
+
+[node:file$
+response:open_file{}$
+words:file$
 priority:1$
 connections:_$]
 

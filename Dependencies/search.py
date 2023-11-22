@@ -30,3 +30,30 @@ def search(searchData):
         return textSection[1].text
     except:
         return "No Data Found On This Topic"
+
+
+def getNews():
+    response = requests.get("https://www.bbc.com/news")
+
+    soup = BeautifulSoup(response.content, "html.parser")
+    headlines = soup.find("body").find_all("h2")
+
+    responses = ""
+    for i in range(len(headlines)):
+        if i > 6:
+            break
+        if headlines[i].text not in responses:
+            responses += headlines[i].text + "\n"
+            i -= 1
+    return responses
+
+
+def getWeather():
+    response = requests.get(
+        "https://weather.com/weather/today/l/1df7354798a71c2a87c94fad701382c964decc25e1250e3ec34e7739d42b41e7"
+    )
+    soup = BeautifulSoup(response.content, "html.parser")
+    temp = soup.find("span", {"class": "CurrentConditions--tempValue--MHmYY"})
+    forecast = soup.find("div", {"class": "CurrentConditions--phraseValue--mZC_p"})
+
+    return "It is currently " + temp.text + " and " + forecast.text
